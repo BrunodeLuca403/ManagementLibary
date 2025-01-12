@@ -1,6 +1,10 @@
-﻿namespace Library.API.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Library.API.Controllers
 {
-    public class LoansController
+    [ApiController]
+    [Route("api/v1/Books")]
+    public class LoansController : Controller
     {
     }
 }

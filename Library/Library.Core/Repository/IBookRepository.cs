@@ -9,10 +9,10 @@ namespace Library.Core.Repository
 {
     public interface IBookRepository
     {
-        void CreateBook(Book user);
-        void DeleteBook(Guid id);
-        void UpdateBook(Guid id, Book user);
-        Task<List<Book>> GetBook();
-        Task<Book> GetBookById(Book id);
+        Task CreateBookAsync(Book user);
+        Task DeleteBookAsync(Guid id);
+        Task UpdateBookAsync(Guid id, Book user);
+        Task<List<Book>> GetBookAsync(string search, int page = 0, int size = 10);
+        Task<Book> GetBookByIdAsync(Guid id);
     }
 }

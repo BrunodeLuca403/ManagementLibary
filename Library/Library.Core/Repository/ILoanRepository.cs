@@ -9,10 +9,10 @@ namespace Library.Core.Repository
 {
     public interface ILoanRepository
     {
-        void CreateLoan(Loan user);
-        void DeleteLoan(Guid id);
-        void UpdateLoan(Guid id, Loan user);
-        Task<List<Loan>> GetLoan();
-        Task<Loan> GetUserById(Guid id);
+        Task CreateLoanAsync(Loan loan);
+        Task DeleteLoanAsync(Guid id);
+        Task UpdateLoanAsync(Guid id, Loan loan);
+        Task<List<Loan>> GetLoanAsync();
+        Task<Loan> GetUserByIdAsync(Guid id);
     }
 }
