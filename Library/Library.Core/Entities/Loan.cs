@@ -17,7 +17,6 @@ namespace Library.Core.Entities
 
         public Guid IdUser { get; private set; }
         public User User { get; private set; }
-
         public Guid Idbook { get; private set; }
         public Book Book { get; private set; }
         public DateTime DateLoan { get; private set; }
