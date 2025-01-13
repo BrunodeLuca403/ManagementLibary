@@ -93,7 +93,6 @@ dotnet ef database update
 5. **Execute o seguinte comando para rodar o servidor:**
 
 ```bash
-###Inicie o projeto
 dotnet run
 
 ```
