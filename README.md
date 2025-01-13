@@ -64,25 +64,25 @@ Certifique-se de que os seguintes softwares estão instalados no seu ambiente:
    ```bash
    git clone https://github.com/BrunodeLuca403/ManagementLibary.git
    cd seu-projeto
-   
-Restaure os pacotes necessários
+   ```   
+2. **Restaure os pacotes necessários**
 
-2. **Execute o comando abaixo para instalar todas as dependências:**
+Execute o comando abaixo para instalar todas as dependências:
 
 ```bash
 dotnet restore
-
+```
 3. **Configure o banco de dados**
 
-<p>Abra o arquivo appsettings.json e atualize a string de conexão em "ConnectionStrings:DefaultConnection" com os dados do seu banco.</p>
-Exemplo:
-
+Abra o arquivo appsettings.json e atualize a string de conexão em "ConnectionStrings:DefaultConnection" com os dados do seu banco.
 ```bash
+###Exemplo:
+
 JSON
 "ConnectionStrings": {
   "DefaultConnection": "Server=localhost;Database=GerenciamentoBiblioteca;Trusted_Connection=True;"
 }
-
+```
 4. **Execute as migrações do Entity Framework Core**
 
 Aplique as migrações para criar as tabelas no banco de dados:
@@ -90,16 +90,17 @@ Aplique as migrações para criar as tabelas no banco de dados:
 ```bash
 dotnet ef database update
 Inicie o projeto
-
+```
 5. **Execute o seguinte comando para rodar o servidor:**
 
 ```bash
 dotnet run
 Acesse o projeto
-
+```
 6. **Após o servidor iniciar, acesse a aplicação no navegador:**
-
+```bash
 http://localhost:5000
 Ou, se estiver habilitado o HTTPS:
 
 https://localhost:5001
+```
