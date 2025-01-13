@@ -89,13 +89,13 @@ Aplique as migrações para criar as tabelas no banco de dados:
 
 ```bash
 dotnet ef database update
-Inicie o projeto
 ```
 5. **Execute o seguinte comando para rodar o servidor:**
 
 ```bash
+###Inicie o projeto
 dotnet run
-Acesse o projeto
+
 ```
 6. **Após o servidor iniciar, acesse a aplicação no navegador:**
 ```bash
