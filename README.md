@@ -1,8 +1,8 @@
-#GERENCIAMENTO DE BIBLIOTECA
+<h1>GERENCIAMENTO DE BIBLIOTECA</h1>
 
 <p>Este projeto consiste no desenvolvimento de um sistema para gerenciamento de biblioteca. Dependendo da permissão do usuário no sistema, será possível realizar operações de CRUD (Criar, Ler, Atualizar, Deletar) para livros, empréstimos e usuários. Apesar de parecer simples, o sistema integra diversas tecnologias avançadas. Atualmente, o desenvolvimento está focado no Back-end, mas o Front-end será implementado futuramente utilizando Blazor.</p>
 
-##Funcionalidades
+<h2>Funcionalidades</h2>
 
 Gerenciamento de livros (CRUD)
 Gerenciamento de empréstimos (CRUD)
@@ -19,7 +19,7 @@ Validação de dados
   <li>Regras gerais do sistema</li>
 </ul>
 
-##Tecnologias Utilizadas
+<h2>Tecnologias Utilizadas</h2>h2>
 
 <ul> 
   <li>.NET 8</li> 
@@ -30,9 +30,9 @@ Validação de dados
   <li>Arquitetura Limpa</li> 
   <li>Repositórios</li> </ul>
   
-##Estrutura do Projeto
+<h2>Estrutura do Projeto</h2>
 
-###O projeto segue uma abordagem de Arquitetura Limpa, com separação clara de responsabilidades:
+<p>O projeto segue uma abordagem de Arquitetura Limpa, com separação clara de responsabilidades:</p>
 
 <ul>
   <li>Camada de Aplicação: Contém os casos de uso, validações e DTOs.</li>
