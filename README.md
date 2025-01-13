@@ -60,46 +60,34 @@ Certifique-se de que os seguintes softwares estão instalados no seu ambiente:
 
 ### Passos para Executar
 
-1. **Clone o repositório do projeto**  
-   ```bash
-   git clone [https://github.com/BrunodeLuca403/ManagementLibary.git]
-   cd seu-projeto
+    <h2>1. Clone o repositório do projeto</h2>
+    <p>Clone o repositório e entre no diretório:</p>
+    <pre><code>git clone https://github.com/BrunodeLuca403/ManagementLibary.git
+cd seu-projeto
+    </code></pre>
 
-2. **Restaure os pacotes necessários**
-Execute o comando abaixo para instalar todas as dependências:
-
- ```bash
-dotnet restore
-Configure o banco de dados
-Abra o arquivo appsettings.json e atualize a string de conexão em "ConnectionStrings:DefaultConnection" com os dados do seu banco.
-Exemplo:
-
-json
-"ConnectionStrings": {
-  "DefaultConnection": "Server=localhost;Database=GerenciamentoBiblioteca;Trusted_Connection=True;"
+    <h2>2. Restaure os pacotes necessários</h2>
+    <p>Execute o comando abaixo para instalar todas as dependências:</p>
+    <pre><code>dotnet restore</code></pre>
+    <p>Configure o banco de dados abrindo o arquivo <code>appsettings.json</code> e atualizando a string de conexão em 
+    <code>ConnectionStrings:DefaultConnection</code> com os dados do seu banco. Exemplo:</p>
+    <pre><code>{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=GerenciamentoBiblioteca;Trusted_Connection=True;"
+  }
 }
+    </code></pre>
 
-3. **Execute as migrações do Entity Framework Core**
-***Aplique as migrações para criar as tabelas no banco de dados:
+    <h2>3. Execute as migrações do Entity Framework Core</h2>
+    <p>Aplique as migrações para criar as tabelas no banco de dados:</p>
+    <pre><code>dotnet ef database update</code></pre>
 
- ```bash
-dotnet ef database update
+    <h2>4. Inicie o projeto</h2>
+    <p>Execute o seguinte comando para rodar o servidor:</p>
+    <pre><code>dotnet run</code></pre>
 
-
-4. **Inicie o projeto**
-***Execute o seguinte comando para rodar o servidor:
-
-```bash
-dotnet run
-
-
-5. **Acesse o projeto**
-***Após o servidor iniciar, acesse a aplicação no navegador:
-
-```bash
-http://localhost:5000
-
-Ou,
-
-se estiver habilitado o HTTPS:
-https://localhost:5001
+    <h2>5. Acesse o projeto</h2>
+    <p>Após o servidor iniciar, acesse a aplicação no navegador:</p>
+    <pre><code>http://localhost:5000</code></pre>
+    <p>Ou, se estiver habilitado o HTTPS:</p>
+    <pre><code>https://localhost:5001</code></pre>
