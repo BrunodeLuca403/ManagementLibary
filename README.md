@@ -58,48 +58,44 @@ Certifique-se de que os seguintes softwares estão instalados no seu ambiente:
 - [SQL Server](https://www.microsoft.com/en-us/sql-server).
 - Ferramenta de sua preferência para gerenciar o banco de dados (ex.: SQL Server Management Studio, Azure Data Studio).  
 
-### Passos para Executar
 
- 1. **Clone o repositório do projeto**  
-   
-bash
-   git clone [https://github.com/BrunodeLuca403/ManagementLibary.git]
+1. **Clone o repositório do projeto**
+
+   bash
+   git clone https://github.com/BrunodeLuca403/ManagementLibary.git
    cd seu-projeto
+Restaure os pacotes necessários
 
-2. **Restaure os pacotes necessários
 Execute o comando abaixo para instalar todas as dependências:
+
 bash
 dotnet restore
 Configure o banco de dados
+
 Abra o arquivo appsettings.json e atualize a string de conexão em "ConnectionStrings:DefaultConnection" com os dados do seu banco.
 Exemplo:
 
-json
+JSON
 "ConnectionStrings": {
   "DefaultConnection": "Server=localhost;Database=GerenciamentoBiblioteca;Trusted_Connection=True;"
 }
+Execute as migrações do Entity Framework Core
 
-3. **Execute as migrações do Entity Framework Core
-***Aplique as migrações para criar as tabelas no banco de dados:
+Aplique as migrações para criar as tabelas no banco de dados:
 
- 
 bash
 dotnet ef database update
+Inicie o projeto
 
+Execute o seguinte comando para rodar o servidor:
 
-4. **Inicie o projeto
-***Execute o seguinte comando para rodar o servidor:
 bash
 dotnet run
+Acesse o projeto
 
+Após o servidor iniciar, acesse a aplicação no navegador:
 
-5. **Acesse o projeto
-***Após o servidor iniciar, acesse a aplicação no navegador:
-
-bash
 http://localhost:5000
+Ou, se estiver habilitado o HTTPS:
 
-Ou,
-
-se estiver habilitado o HTTPS:
 https://localhost:5001
