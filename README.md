@@ -19,7 +19,7 @@ Validação de dados
   <li>Regras gerais do sistema</li>
 </ul>
 
-<h2>Tecnologias Utilizadas</h2>h2>
+<h2>Tecnologias Utilizadas</h2>
 
 <ul> 
   <li>.NET 8</li> 
