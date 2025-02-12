@@ -1,21 +1,25 @@
+using Library.Application;
+using Library.Application.Commands.Book;
+using Library.Core.Repository;
+using Library.Infrastructure;
 using Library.Infrastructure.Persistense.Context;
+using Library.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("Library");
-
-builder.Services.AddDbContext<LibraryDbContext>(e => e.UseSqlServer(connectionString));
 builder.Services.AddControllers();
 
+builder.Services.AddInfractructure(builder.Configuration);
+builder.Services.AddApplication();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

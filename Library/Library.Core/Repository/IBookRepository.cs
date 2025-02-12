@@ -11,7 +11,7 @@ namespace Library.Core.Repository
     {
         Task CreateBookAsync(Book user);
         Task DeleteBookAsync(Guid id);
-        Task UpdateBookAsync(Guid id, Book user);
+        Task UpdateBookAsync(Book user);
         Task<List<Book>> GetBookAsync(string search, int page = 0, int size = 10);
         Task<Book> GetBookByIdAsync(Guid id);
     }

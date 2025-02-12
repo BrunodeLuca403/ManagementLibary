@@ -43,10 +43,10 @@ namespace Library.Infrastructure.Repository
             return await _dbContext.Loans.SingleOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task UpdateLoanAsync(Guid id, Loan loan)
+        public async Task UpdateLoanAsync(Loan loan)
         {
-            var SearchLoan = await _dbContext.Books.SingleOrDefaultAsync(p => p.Id == id);
-            _dbContext.Books.Update(SearchLoan);
+            loan.Update();
+            _dbContext.Loans.Update(loan);
             await _dbContext.SaveChangesAsync();
         }
     }

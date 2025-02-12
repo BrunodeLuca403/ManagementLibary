@@ -45,9 +45,10 @@ namespace Library.Infrastructure.Repository
             
         }
 
-        public async Task UpdateBookAsync(Guid id, Book user)
+        public async Task UpdateBookAsync(Book book)
         {
-            var book = await _dbContext.Books.SingleOrDefaultAsync(p => p.Id == id);
+            //var book = await _dbContext.Books.SingleOrDefaultAsync(p => p.Id == id);
+            book.Update(book.Title, book.Author, book.ISBN, book.Yearpublication);
             _dbContext.Books.Update(book);
             _dbContext.SaveChangesAsync();
         }

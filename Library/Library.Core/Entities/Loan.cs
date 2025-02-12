@@ -20,5 +20,11 @@ namespace Library.Core.Entities
         public Guid Idbook { get; private set; }
         public Book Book { get; private set; }
         public DateTime DateLoan { get; private set; }
+
+        public void Update()
+        {
+           
+
+        }
     }
 }

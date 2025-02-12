@@ -23,6 +23,13 @@ namespace Library.Core.Entities
         public string Yearpublication { get; private set; }
         public List<Loan> Loans { get; private set; }
 
+        public void Update(string title, string author, string iSBN, string yearpublication)
+        {
+            Title = title;
+            Author = author;
+            ISBN = iSBN;
+            Yearpublication = yearpublication;
 
+        }
     }
 }

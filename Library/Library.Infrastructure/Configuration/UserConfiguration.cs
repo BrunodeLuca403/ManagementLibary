@@ -16,8 +16,6 @@ namespace Library.Infrastructure.Configuration
 
             builder.HasKey(u => u.Id);
 
-          
-
         }
     }
 }
