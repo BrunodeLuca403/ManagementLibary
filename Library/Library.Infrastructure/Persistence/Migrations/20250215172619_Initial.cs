@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Library.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,9 @@ namespace Library.Infrastructure.Persistence.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ISBN = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Yearpublication = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Yearpublication = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,7 +35,9 @@ namespace Library.Infrastructure.Persistence.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,7 +51,11 @@ namespace Library.Infrastructure.Persistence.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Idbook = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DateLoan = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DateLoan = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Datereturn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DaysDelay = table.Column<int>(type: "int", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

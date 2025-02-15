@@ -12,7 +12,7 @@ namespace Library.Application.Validators
     {
         public UpdateUserCommandValidator()
         {
-            RuleFor(p => p.Id).NotNull().WithMessage("Informar o Id");
+            RuleFor(p => p.Id).NotNull().Must(ValidarId).WithMessage("Informar o Id");
 
             RuleFor(p => p.FullName).NotNull().MaximumLength(100).WithMessage("Informar o nome completo");
 
@@ -20,5 +20,10 @@ namespace Library.Application.Validators
 
             RuleFor(p => p.Email).NotNull().EmailAddress().WithMessage("Informar o email");
         }
+        private bool ValidarId(Guid id)
+        {
+            return id != Guid.Empty;
+        }
+
     }
 }

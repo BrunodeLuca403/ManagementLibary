@@ -25,17 +25,9 @@ namespace Library.Infrastructure.Repository
          
         }
 
-        public async Task DeleteBookAsync(Guid id)
+        public async Task<List<Book>> GetBookAsync()
         {
-            var book = await _dbContext.Books.SingleOrDefaultAsync(p => p.Id == id);
-
-            _dbContext.Books.Remove(book);
-            await _dbContext.SaveChangesAsync();
-        }
-
-        public async Task<List<Book>> GetBookAsync(string search,int page = 0, int size = 10)
-        {
-           return await _dbContext.Books.Where(p => !p.IsDeleted || search == "" || search == p.Title).Skip(page + size).Take(size).ToListAsync();
+           return await _dbContext.Books.Where(p => !p.IsDeleted).ToListAsync();
       
         }
 

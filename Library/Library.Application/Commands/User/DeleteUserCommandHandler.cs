@@ -1,4 +1,5 @@
-﻿using Library.Core.Repository;
+﻿using Library.Core.Entities;
+using Library.Core.Repository;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System;
@@ -20,7 +21,9 @@ namespace Library.Application.Commands.User
 
         public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
-            await  _repository.DeleteUserAsync(request.Id);
+            var user = await _repository.GetUserByIdAsync(request.Id);
+            user.SetAsDeleted();
+            await _repository.UpdateUserAsync(request.Id, user);
             return Unit.Value;
         }
     }

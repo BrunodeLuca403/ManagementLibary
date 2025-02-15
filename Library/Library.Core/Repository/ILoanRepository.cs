@@ -14,5 +14,6 @@ namespace Library.Core.Repository
         Task UpdateLoanAsync(Loan loan);
         Task<List<Loan>> GetLoanAsync();
         Task<Loan> GetUserByIdAsync(Guid id);
+        Task UpdateDaysDelayAsync(Guid id);
     }
 }

@@ -16,6 +16,8 @@ namespace Library.Infrastructure.Configuration
 
             builder.HasKey(u => u.Id);
 
+            builder.HasMany(p => p.Loans).WithOne(p => p.User).HasForeignKey(p => p.IdUser);
+
         }
     }
 }

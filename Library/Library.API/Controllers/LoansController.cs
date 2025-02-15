@@ -21,7 +21,7 @@ namespace Library.API.Controllers
         }
 
         [HttpGet("/listar-emprestimos")]
-        public async Task<ActionResult<List<GetAllLoansViewModel>>> GetLoan([FromQuery] GeatAllLoansQuery query)
+        public async Task<ActionResult<List<GetAllLoansViewModel>>> GetLoan([FromQuery] GetAllLoansQuery query)
         {
             var loans = await _mediator.Send(query);
 

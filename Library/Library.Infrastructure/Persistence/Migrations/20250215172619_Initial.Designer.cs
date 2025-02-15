@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20250111185619_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20250215172619_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,9 +35,15 @@ namespace Library.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ISBN")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -58,14 +64,26 @@ namespace Library.Infrastructure.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("DateLoan")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Datereturn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DaysDelay")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("IdUser")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Idbook")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -85,6 +103,9 @@ namespace Library.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -92,6 +113,9 @@ namespace Library.Infrastructure.Persistence.Migrations
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

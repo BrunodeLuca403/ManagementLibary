@@ -26,37 +26,28 @@ namespace Library.Infrastructure.Repository
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteUserAsync(Guid id)
-        {
-            var user = await _dbContext.Users.SingleOrDefaultAsync(x => x.Id == id);
+        //public async Task<List<User>> GetUserAsync(string search,int page = 0, int size = 10)
+        //{
+        //   return await _dbContext.Users.Include(p => p.Loans)
+        //                                .Where(p => !p.IsDeleted || 
+        //                                       search == "" || 
+        //                                       search == p.FullName || 
+        //                                       search == p.Email)
+        //                                .Skip(page + size)
+        //                                .Take(size)
+        //                                .ToListAsync();
 
-            _dbContext.Users.Remove(user);
-            await _dbContext.SaveChangesAsync();
-
-        }
-
-        public async Task<List<User>> GetUserAsync(string search,int page = 0, int size = 10)
-        {
-           return await _dbContext.Users.Include(p => p.Loans)
-                                        .Where(p => !p.IsDeleted || 
-                                               search == "" || 
-                                               search == p.FullName || 
-                                               search == p.Email)
-                                        .Skip(page + size)
-                                        .Take(size)
-                                        .ToListAsync();
-
-        }
+        //}
 
         public async Task<User> GetUserByIdAsync(Guid id)
         {
-            return await _dbContext.Users.SingleAsync(x => x.Id == id);
+            return await _dbContext.Users.Include(p => p.Loans).SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task UpdateUserAsync(Guid id, User user)
         {
             var searchUser = await _dbContext.Users.SingleOrDefaultAsync(p => p.Id == id);
-
+            user.Update(searchUser.FullName, searchUser.BirthDate, searchUser.Email);
             _dbContext.Users.Update(searchUser);
             await _dbContext.SaveChangesAsync();
         }

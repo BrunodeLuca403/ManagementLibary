@@ -18,7 +18,10 @@ namespace Library.Application.Validators
 
             RuleFor(p => p.ISBN).NotNull().MaximumLength(100).MinimumLength(2).WithMessage("Informar o ISBN do livro");
 
-            RuleFor(p => p.Yearpublication).NotNull().MaximumLength(4).MinimumLength(4).WithMessage("Informar o Yearpublication do livro");
+            RuleFor(p => p.Yearpublication).NotNull()
+                                           .Matches(@"^\d{4}$").WithMessage("O Yearpublication deve conter exatamente 4 números.")
+                                           .MaximumLength(4)
+                                           .MinimumLength(4).WithMessage("Informar o Yearpublication do livro");
 
         }
     }

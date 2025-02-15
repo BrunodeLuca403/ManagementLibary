@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Application.Querys.Book
+namespace Library.Application.Querys.Loans
 {
-    public class ListBookQuery : IRequest<List<GetAllBookViewModel>>
+    public class GetAllLoansQuery : IRequest<List<GetAllLoansViewModel>>
     {
-    
+        //public Guid Id { get; set; }
     }
 }

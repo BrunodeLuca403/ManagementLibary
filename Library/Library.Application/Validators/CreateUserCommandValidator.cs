@@ -16,7 +16,7 @@ namespace Library.Application.Validators
 
             RuleFor(p => p.BirthDate).NotNull().WithMessage("Informar a data de nascimento");
 
-            RuleFor(p => p.Email).NotNull().EmailAddress().WithMessage("Informar o email");
+            RuleFor(p => p.Email).NotEmpty().NotNull().EmailAddress().WithMessage("Informar o email");
         }
     }
 }

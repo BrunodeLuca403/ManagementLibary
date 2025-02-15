@@ -21,5 +21,14 @@ namespace Library.Core.Entities
         public DateTime BirthDate { get; private set; }
         public string Email { get; private set; }
         public List<Loan> Loans { get; private set; }
+
+
+        public void Update(string fullname, DateTime birthDate, string email)
+        {
+            FullName = fullname;
+            BirthDate = birthDate;
+            Email = email;
+
+        }
     }
 }

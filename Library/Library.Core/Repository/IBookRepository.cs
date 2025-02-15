@@ -10,9 +10,8 @@ namespace Library.Core.Repository
     public interface IBookRepository
     {
         Task CreateBookAsync(Book user);
-        Task DeleteBookAsync(Guid id);
         Task UpdateBookAsync(Book user);
-        Task<List<Book>> GetBookAsync(string search, int page = 0, int size = 10);
+        Task<List<Book>> GetBookAsync();
         Task<Book> GetBookByIdAsync(Guid id);
     }
 }

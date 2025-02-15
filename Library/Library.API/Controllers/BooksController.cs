@@ -23,25 +23,25 @@ namespace Library.API.Controllers
         }
 
         [HttpGet("/List-Book")]
-        public async Task<ActionResult<List<GetAllBookViewModel>>> GetAllBook([FromQuery] ListBookQuery query)
+        public async Task<ActionResult<List<GetAllBookViewModel>>> GetAllBook(ListBookQuery query)
         {
             var book = await _mediator.Send(query);    
             return Ok(book);
         }
-        [HttpGet("/List-Book-id/{id}")]
-        public async Task<ActionResult> GetByIdBook([FromQuery] Guid id)
+        [HttpGet("List-Book-id/{id}")]
+        public async Task<ActionResult<GetByIdBookViewModel>> GetByIdBook([FromRoute] Guid id)
         {
-            var BookId = new GetByIdBookQuery(id);
-            var book = await _mediator.Send(BookId);
+            var query = new GetByIdBookQuery(id);
+            var book = await _mediator.Send(query);
 
-            if(book is null) 
-                   return NotFound();
+            if (book is null)
+                return NotFound();
 
             return Ok(book);
         }
 
         [HttpPost("/Create-Book")]
-        public async Task<IActionResult> PostBook([FromBody] CreateBookCommand command)
+        public async Task<ActionResult> PostBook([FromBody] CreateBookCommand command)
         {
             var book = await _mediator.Send(command);
 
@@ -49,7 +49,7 @@ namespace Library.API.Controllers
         }
 
         [HttpPut("/Update-Book")]
-        public async Task<IActionResult> UpdateBook([FromBody] UpdateBookCommand command)
+        public async Task<ActionResult> UpdateBook([FromBody] UpdateBookCommand command)
         {
             var book = await _mediator.Send(command);
 
@@ -57,7 +57,7 @@ namespace Library.API.Controllers
         }
 
         [HttpDelete("/Delete-Book")]
-        public async Task<IActionResult> DeleteBook([FromBody] DeleteBookCommand command)
+        public async Task<ActionResult> DeleteBook([FromBody] DeleteBookCommand command)
         {
             var book = await _mediator.Send(command);
 

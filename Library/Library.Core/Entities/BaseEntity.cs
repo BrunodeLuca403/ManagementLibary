@@ -11,12 +11,12 @@ namespace Library.Core.Entities
         public BaseEntity()
         {
             Id = Guid.NewGuid();
-            CreateAt = DateTime.Now;
+            CreatedAt = DateTime.Now;
             IsDeleted = false;
         }
 
         public Guid Id { get; set; }
-        public DateTime CreateAt { get; private set; }
+        public DateTime CreatedAt { get; private set; }
         public bool IsDeleted { get; set; }
 
         public void SetAsDeleted()

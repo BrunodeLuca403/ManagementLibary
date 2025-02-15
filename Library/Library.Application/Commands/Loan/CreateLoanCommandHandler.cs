@@ -21,7 +21,9 @@ namespace Library.Application.Commands.Loan
 
         public async Task<Guid> Handle(CreateLoanCommand request, CancellationToken cancellationToken)
         {
-            var loan = new Core.Entities.Loan(request.IdUser, request.Idbook);
+            int daysDelay = (request.DateReturn < DateTime.Now) ? (DateTime.Now - request.DateReturn).Days : 0;
+
+            var loan = new Core.Entities.Loan(request.IdUser, request.Idbook, request.DateReturn, daysDelay);
             await _loanRepository.CreateLoanAsync(loan);
 
             return loan.Id;

@@ -10,9 +10,8 @@ namespace Library.Core.Repository
     public interface IUserRepository
     {
         Task CreateUserAsync(User user);
-        Task DeleteUserAsync(Guid id);
         Task UpdateUserAsync(Guid id, User user); 
-        Task<List<User>> GetUserAsync(string search, int page = 0, int size = 10);
+        //Task<List<User>> GetUserAsync(string search, int page = 0, int size = 10);
         Task<User> GetUserByIdAsync(Guid id);
 
 

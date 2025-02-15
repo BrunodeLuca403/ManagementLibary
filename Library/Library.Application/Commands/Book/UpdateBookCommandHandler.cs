@@ -21,7 +21,7 @@ namespace Library.Application.Commands.Book
         {
             var book = await _bookRepository.GetBookByIdAsync(request.Id);
 
-            await _bookRepository.UpdateBookAsync(book.Id, book);
+            await _bookRepository.UpdateBookAsync(book);
 
             return Unit.Value;
         }

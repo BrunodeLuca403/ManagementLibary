@@ -40,7 +40,7 @@ namespace Library.Infrastructure.Repository
 
         public async Task<Loan> GetUserByIdAsync(Guid id)
         {
-            return await _dbContext.Loans.SingleOrDefaultAsync(p => p.Id == id);
+            return await _dbContext.Loans.Include(p => p.User).Include(p => p.Book).SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task UpdateLoanAsync(Loan loan)
@@ -48,6 +48,23 @@ namespace Library.Infrastructure.Repository
             loan.Update();
             _dbContext.Loans.Update(loan);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task UpdateDaysDelayAsync(Guid id)
+        {
+            var loan = await _dbContext.Loans.SingleOrDefaultAsync(l => l.Id == id);
+
+            if (loan != null)
+            {
+                int newDaysDelay = (loan.Datereturn < DateTime.Now) ? (DateTime.Now - loan.Datereturn).Days : 0;
+
+                if (loan.DaysDelay != newDaysDelay) 
+                {
+                    loan.DaysDelay = newDaysDelay;
+                    _dbContext.Loans.Update(loan);
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Library.Application.Querys.Book
 
         public async Task<List<GetAllBookViewModel>> Handle(ListBookQuery request, CancellationToken cancellationToken)
         {
-            var book = await _bookRepository.GetBookAsync(request.search);
+            var book = await _bookRepository.GetBookAsync();
             var bookViewModel  = book.Select(b => new GetAllBookViewModel( b.Title, b.Author)).ToList();
             return bookViewModel;
         }

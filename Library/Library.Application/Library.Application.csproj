@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="InputModels\Loan\" />
     <Folder Include="InputModels\Book\" />
-    <Folder Include="Querys\User\" />
   </ItemGroup>
 
   <ItemGroup>
