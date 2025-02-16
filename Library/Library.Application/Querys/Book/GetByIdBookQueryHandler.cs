@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Querys.Book
 {
-    public class GetByIdBookQueryHandler : IRequestHandler<GetByIdBookQuery, GetByIdBookViewModel>
+    public class GetByIdBookQueryHandler : IRequestHandler<GetByIdBookQuery, ResultViewModel<GetByIdBookViewModel>>
     {
         private readonly IBookRepository _bookRepository;
 
@@ -18,9 +18,14 @@ namespace Library.Application.Querys.Book
             _bookRepository = bookRepository;
         } 
 
-        public async Task<GetByIdBookViewModel> Handle(GetByIdBookQuery request, CancellationToken cancellationToken)
+        public async Task<ResultViewModel<GetByIdBookViewModel>> Handle(GetByIdBookQuery request, CancellationToken cancellationToken)
         {
             var id = await _bookRepository.GetBookByIdAsync(request.Id);
+
+            if(id is null)
+            {
+                return ResultViewModel<GetByIdBookViewModel>.Error("Livro não encontrado");
+            }
 
             var bookViewModel = new GetByIdBookViewModel(
                 id.Title,
@@ -29,7 +34,7 @@ namespace Library.Application.Querys.Book
                 id.Yearpublication
                 );
 
-            return bookViewModel;
+            return ResultViewModel<GetByIdBookViewModel>.Success(bookViewModel);
         }
     }
 }

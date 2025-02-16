@@ -38,7 +38,7 @@ namespace Library.Infrastructure.Repository
              return await _dbContext.Loans.Where(p => !p.IsDeleted).Include(p => p.User).Include(p => p.Book).ToListAsync();
         }
 
-        public async Task<Loan> GetUserByIdAsync(Guid id)
+        public async Task<Loan> GetLoanByIdAsync(Guid id)
         {
             return await _dbContext.Loans.Include(p => p.User).Include(p => p.Book).SingleOrDefaultAsync(p => p.Id == id);
         }

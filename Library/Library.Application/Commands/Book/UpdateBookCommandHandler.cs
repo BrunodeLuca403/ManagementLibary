@@ -1,4 +1,5 @@
-﻿using Library.Core.Repository;
+﻿using Library.Application.ViewModels;
+using Library.Core.Repository;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Commands.Book
 {
-    public class UpdateBookCommandHandler : IRequestHandler<UpdateBookCommand, Unit>
+    public class UpdateBookCommandHandler : IRequestHandler<UpdateBookCommand, ResultViewModel>
     {
         private readonly IBookRepository _bookRepository;
 
@@ -17,13 +18,19 @@ namespace Library.Application.Commands.Book
             _bookRepository = bookRepository;
         }
 
-        public async Task<Unit> Handle(UpdateBookCommand request, CancellationToken cancellationToken)
+        public async Task<ResultViewModel> Handle(UpdateBookCommand request, CancellationToken cancellationToken)
         {
             var book = await _bookRepository.GetBookByIdAsync(request.Id);
 
+            if(book is null)
+            {
+                return ResultViewModel.Error("Livro não encontrado!");
+
+            }
+
             await _bookRepository.UpdateBookAsync(book);
 
-            return Unit.Value;
+            return ResultViewModel.Success();
         }
     }
 }

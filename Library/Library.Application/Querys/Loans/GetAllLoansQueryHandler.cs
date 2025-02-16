@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Querys.Loans
 {
-    public class GetAllLoansQueryHandler : IRequestHandler<GetAllLoansQuery, List<GetAllLoansViewModel>>
+    public class GetAllLoansQueryHandler : IRequestHandler<GetAllLoansQuery, ResultViewModel<List<GetAllLoansViewModel>>>
     {
         private readonly ILoanRepository _loanRepository;
 
@@ -18,13 +18,17 @@ namespace Library.Application.Querys.Loans
             _loanRepository = loanRepository;
         }
 
-        public async Task<List<GetAllLoansViewModel>> Handle(GetAllLoansQuery request, CancellationToken cancellationToken)
+        public async Task<ResultViewModel<List<GetAllLoansViewModel>>> Handle(GetAllLoansQuery request, CancellationToken cancellationToken)
         {
             var loan = await _loanRepository.GetLoanAsync();
-            //await _loanRepository.UpdateDaysDelayAsync(request.Id);
 
-            var bookViewModel = loan.Select(b => new GetAllLoansViewModel(b.User.Email, b.Book.Title, b.DateLoan, b.Datereturn, b.DaysDelay)).ToList();
-            return bookViewModel;
+            if(loan is null)
+            {
+                return ResultViewModel<List<GetAllLoansViewModel>>.Error("Emprestimo não encontrado!");
+            }
+
+            var LoanViewModel = loan.Select(b => new GetAllLoansViewModel(b.User.Email, b.Book.Title, b.DateLoan, b.Datereturn, b.DaysDelay)).ToList();
+            return ResultViewModel<List<GetAllLoansViewModel>>.Success(LoanViewModel);
         }
     }
 }

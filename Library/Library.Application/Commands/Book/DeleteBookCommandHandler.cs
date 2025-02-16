@@ -1,4 +1,5 @@
-﻿using Library.Core.Repository;
+﻿using Library.Application.ViewModels;
+using Library.Core.Repository;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Commands.Book
 {
-    public class DeleteBookCommandHandler : IRequestHandler<DeleteBookCommand, Unit>
+    public class DeleteBookCommandHandler : IRequestHandler<DeleteBookCommand, ResultViewModel>
     {
         private readonly IBookRepository _bookRepository;
 
@@ -18,15 +19,15 @@ namespace Library.Application.Commands.Book
             _bookRepository = bookRepository;
         }
 
-        public async Task<Unit> Handle(DeleteBookCommand request, CancellationToken cancellationToken)
+        public async Task<ResultViewModel> Handle(DeleteBookCommand request, CancellationToken cancellationToken)
         {
             var book = await _bookRepository.GetBookByIdAsync(request.Id);
             if (book is null)
-                return Unit.Value;
+                return ResultViewModel.Error("Livro não encontrado!");
 
             book.SetAsDeleted();
             await _bookRepository.UpdateBookAsync(book);
-            return Unit.Value;
+            return ResultViewModel.Success();
 
         }
     }

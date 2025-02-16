@@ -13,7 +13,7 @@ namespace Library.Core.Repository
         Task DeleteLoanAsync(Guid id);
         Task UpdateLoanAsync(Loan loan);
         Task<List<Loan>> GetLoanAsync();
-        Task<Loan> GetUserByIdAsync(Guid id);
+        Task<Loan> GetLoanByIdAsync(Guid id);
         Task UpdateDaysDelayAsync(Guid id);
     }
 }

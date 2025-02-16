@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Querys.User
 {
-    public class GetByIdUserQuery : IRequest<GetByIdUserViewModel>
+    public class GetByIdUserQuery : IRequest<ResultViewModel<GetByIdUserViewModel>>
     {
         public GetByIdUserQuery(Guid id)
         {

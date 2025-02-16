@@ -1,4 +1,5 @@
-﻿using Library.Core.Entities;
+﻿using Library.Application.ViewModels;
+using Library.Core.Entities;
 using Library.Core.Repository;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Commands.User
 {
-    public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, Unit>
+    public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, ResultViewModel>
     {
         private readonly IUserRepository _repository;
 
@@ -19,12 +20,18 @@ namespace Library.Application.Commands.User
             _repository = repository;
         }
 
-        public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+        public async Task<ResultViewModel> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
             var user = await _repository.GetUserByIdAsync(request.Id);
+
+            if(user is null)
+            {
+                return ResultViewModel.Error("Usuário não encontrado");
+            }
+
             user.SetAsDeleted();
             await _repository.UpdateUserAsync(request.Id, user);
-            return Unit.Value;
+            return ResultViewModel.Success();
         }
     }
 }

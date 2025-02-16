@@ -8,8 +8,13 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Querys.Loans
 {
-    public class GetAllLoansQuery : IRequest<ResultViewModel<List<GetAllLoansViewModel>>>
+    public class GetByIdLoanQuery : IRequest<ResultViewModel<GetByIdLoanViewModel>>
     {
-        //public Guid Id { get; set; }
+        public GetByIdLoanQuery(Guid id)
+        {
+            Id = id;
+        }
+
+        public Guid Id { get; set; }
     }
 }

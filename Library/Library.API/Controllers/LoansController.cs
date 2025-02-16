@@ -1,4 +1,5 @@
 ﻿using Library.Application.Commands.Loan;
+using Library.Application.Querys.Book;
 using Library.Application.Querys.Loans;
 using Library.Application.ViewModels;
 using Library.Core.Entities;
@@ -26,6 +27,18 @@ namespace Library.API.Controllers
             var loans = await _mediator.Send(query);
 
             return Ok(loans);
+        }
+
+        [HttpGet("/List-Loan-id/{id}")]
+        public async Task<ActionResult<GetByIdLoanViewModel>> GetByIdLoan([FromRoute] Guid id)
+        {
+            var query = new GetByIdLoanQuery(id);
+            var book = await _mediator.Send(query);
+
+            if (book is null)
+                return NotFound();
+
+            return Ok(book);
         }
 
         [HttpPost("/emprestimos")]

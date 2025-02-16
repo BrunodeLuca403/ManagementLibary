@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Library.Application.ViewModels;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Commands.Loan
 {
-    public class CreateLoanCommand : IRequest<Guid>
+    public class CreateLoanCommand : IRequest<ResultViewModel<Guid>>
     {
         public CreateLoanCommand(Guid idUser, Guid idbook, DateTime dateReturn, int? daysDalay)
         {

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Library.Application.ViewModels;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Commands.User
 {
-    public class UpdateUserCommand : IRequest<Unit>
+    public class UpdateUserCommand : IRequest<ResultViewModel>
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }

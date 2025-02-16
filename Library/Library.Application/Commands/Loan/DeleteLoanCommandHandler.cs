@@ -1,4 +1,5 @@
-﻿using Library.Core.Repository;
+﻿using Library.Application.ViewModels;
+using Library.Core.Repository;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Commands.Loan
 {
-    public class DeleteLoanCommandHandler : IRequestHandler<DeleteLoanCommand, Guid>
+    public class DeleteLoanCommandHandler : IRequestHandler<DeleteLoanCommand, ResultViewModel<Guid>>
     {
         private readonly ILoanRepository _loanRepository;
 
@@ -17,17 +18,19 @@ namespace Library.Application.Commands.Loan
             _loanRepository = loanRepository;
         }
 
-        public async Task<Guid> Handle(DeleteLoanCommand request, CancellationToken cancellationToken)
+        public async Task<ResultViewModel<Guid>> Handle(DeleteLoanCommand request, CancellationToken cancellationToken)
         {
-            
-            
-            var loan = await _loanRepository.GetUserByIdAsync(request.IdLoan);
+            var loan = await _loanRepository.GetLoanByIdAsync(request.IdLoan);
+
+            if(loan is null)
+            {
+                return ResultViewModel<Guid>.Error("Emprestimo não encontrado");
+            }
 
             loan.SetAsDeleted();
             loan.Update();
-            //await _loanRepository.DeleteLoanAsync(loan.Id);
 
-            return loan.Id;
+            return ResultViewModel<Guid>.Success(loan.Id);
                   
         }
     }

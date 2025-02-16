@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Querys.Book
 {
-    public class ListBookQueryHandler : IRequestHandler<ListBookQuery, List<GetAllBookViewModel>>
+    public class ListBookQueryHandler : IRequestHandler<ListBookQuery, ResultViewModel<List<GetAllBookViewModel>>>
     {
         private readonly IBookRepository _bookRepository;
 
@@ -18,11 +18,11 @@ namespace Library.Application.Querys.Book
             _bookRepository = bookRepository;
         }
 
-        public async Task<List<GetAllBookViewModel>> Handle(ListBookQuery request, CancellationToken cancellationToken)
+        public async Task<ResultViewModel<List<GetAllBookViewModel>>> Handle(ListBookQuery request, CancellationToken cancellationToken)
         {
             var book = await _bookRepository.GetBookAsync();
             var bookViewModel  = book.Select(b => new GetAllBookViewModel( b.Title, b.Author)).ToList();
-            return bookViewModel;
+            return ResultViewModel<List<GetAllBookViewModel>>.Success(bookViewModel);
         }
     }
 }
