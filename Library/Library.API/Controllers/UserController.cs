@@ -4,12 +4,15 @@ using Library.Application.Querys.Book;
 using Library.Application.Querys.User;
 using Library.Application.ViewModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.API.Controllers
 {
     [ApiController]
     [Route("api/v1/Books")]
+    [Authorize]
+
     public class UserController : Controller
     {
         private IMediator _mediator;
@@ -19,6 +22,14 @@ namespace Library.API.Controllers
         {
             _mediator = mediator;
             _logger = logger;
+        }
+
+        [HttpPost("/login-User")]
+        public async Task<ActionResult> LoginUser([FromBody] LoginUserCommand command)
+        {
+            var user = await _mediator.Send(command);
+
+            return Ok(user);
         }
 
         [HttpGet("/List-User-id/{id}")]

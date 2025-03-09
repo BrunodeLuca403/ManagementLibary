@@ -4,12 +4,15 @@ using Library.Application.Querys.Loans;
 using Library.Application.ViewModels;
 using Library.Core.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.API.Controllers
 {
     [ApiController]
     [Route("api/v1/Books")]
+    [Authorize]
+
     public class LoansController : Controller
     {
         private IMediator _mediator;

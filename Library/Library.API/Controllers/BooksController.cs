@@ -4,12 +4,15 @@ using Library.Application.Querys.Book;
 using Library.Application.ViewModels;
 using Library.Core.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Library.API.Controllers
 {
     [ApiController]
     [Route("api/v1/Books")]
+    [Authorize]
     public class BooksController : Controller
     {
 
@@ -23,12 +26,16 @@ namespace Library.API.Controllers
         }
 
         [HttpGet("/List-Book")]
+        [AllowAnonymous]
+
         public async Task<ActionResult<List<GetAllBookViewModel>>> GetAllBook([FromQuery]ListBookQuery query)
         {
+           
             var book = await _mediator.Send(query);    
             return Ok(book);
         }
         [HttpGet("List-Book-id/{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<GetByIdBookViewModel>> GetByIdBook([FromRoute] Guid id)
         {
             var query = new GetByIdBookQuery(id);

@@ -44,6 +44,13 @@ namespace Library.Infrastructure.Repository
             return await _dbContext.Users.Include(p => p.Loans).SingleOrDefaultAsync(x => x.Id == id);
         }
 
+        public  User LoginUser(string Email, string password)
+        {
+            return  _dbContext.Users.SingleOrDefault(p => p.Email == Email && p.Password == password);
+
+            
+        }
+
         public async Task UpdateUserAsync(Guid id, User user)
         {
             var searchUser = await _dbContext.Users.SingleOrDefaultAsync(p => p.Id == id);
